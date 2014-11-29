@@ -108,12 +108,7 @@ public final class MediaProjectionManager {
      * @hide
      */
     public MediaProjectionInfo getActiveProjectionInfo() {
-        try {
-            return mService.getActiveProjectionInfo();
-        } catch (RemoteException e) {
-            Log.e(TAG, "Unable to get the active projection info", e);
-        }
-        return null;
+	return null;
     }
 
     /**
@@ -139,11 +134,6 @@ public final class MediaProjectionManager {
         }
         CallbackDelegate delegate = new CallbackDelegate(callback, handler);
         mCallbacks.put(callback, delegate);
-        try {
-            mService.addCallback(delegate);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Unable to add callbacks to MediaProjection service", e);
-        }
     }
 
     /**

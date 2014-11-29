@@ -226,7 +226,6 @@ public class MediaSessionLegacyHelper {
     }
 
     public void sendAdjustVolumeBy(int suggestedStream, int delta, int flags) {
-        mSessionManager.dispatchAdjustVolume(suggestedStream, delta, flags);
         if (DEBUG) {
             Log.d(TAG, "dispatched volume adjustment");
         }

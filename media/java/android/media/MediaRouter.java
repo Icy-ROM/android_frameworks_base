@@ -149,10 +149,7 @@ public class MediaRouter {
             mDisplayService.registerDisplayListener(this, mHandler);
 
             AudioRoutesInfo newAudioRoutes = null;
-            try {
-                newAudioRoutes = mAudioService.startWatchingRoutes(mAudioRoutesObserver);
-            } catch (RemoteException e) {
-            }
+
             if (newAudioRoutes != null) {
                 // This will select the active BT route if there is one and the current
                 // selected route is the default system route, or if there is no selected
@@ -715,7 +712,7 @@ public class MediaRouter {
             if (sStatic == null) {
                 final Context appContext = context.getApplicationContext();
                 sStatic = new Static(appContext);
-                sStatic.startMonitoringRoutes(appContext);
+//                sStatic.startMonitoringRoutes(appContext);
             }
         }
     }

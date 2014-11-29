@@ -903,13 +903,7 @@ public class AudioManager {
      * @see #setRingerMode(int)
      */
     public int getRingerMode() {
-        IAudioService service = getService();
-        try {
-            return service.getRingerMode();
-        } catch (RemoteException e) {
-            Log.e(TAG, "Dead object in getRingerMode", e);
             return RINGER_MODE_NORMAL;
-        }
     }
 
     /**
@@ -2054,22 +2048,7 @@ public class AudioManager {
      * NOTE: This version uses the UI settings to determine
      * whether sounds are heard or not.
      */
-    public void  playSoundEffect(int effectType) {
-        if (effectType < 0 || effectType >= NUM_SOUND_EFFECTS) {
-            return;
-        }
-
-        if (!querySoundEffectsEnabled(Process.myUserHandle().getIdentifier())) {
-            return;
-        }
-
-        IAudioService service = getService();
-        try {
-            service.playSoundEffect(effectType);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Dead object in playSoundEffect"+e);
-        }
-    }
+    public void  playSoundEffect(int effectType) {}
 
     /**
      * Plays a sound effect (Key clicks, lid open/close...)
@@ -2090,20 +2069,7 @@ public class AudioManager {
      * @hide
      */
     public void  playSoundEffect(int effectType, int userId) {
-        if (effectType < 0 || effectType >= NUM_SOUND_EFFECTS) {
-            return;
-        }
 
-        if (!querySoundEffectsEnabled(userId)) {
-            return;
-        }
-
-        IAudioService service = getService();
-        try {
-            service.playSoundEffect(effectType);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Dead object in playSoundEffect"+e);
-        }
     }
 
     /**
@@ -2131,11 +2097,7 @@ public class AudioManager {
         }
 
         IAudioService service = getService();
-        try {
-            service.playSoundEffectVolume(effectType, volume);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Dead object in playSoundEffect"+e);
-        }
+
     }
 
     /**
@@ -3264,11 +3226,7 @@ public class AudioManager {
 
     /** {@hide} */
     public IRingtonePlayer getRingtonePlayer() {
-        try {
-            return getService().getRingtonePlayer();
-        } catch (RemoteException e) {
             return null;
-        }
     }
 
     /**
@@ -3323,11 +3281,7 @@ public class AudioManager {
      * @hide
      */
     public void setVolumeController(IVolumeController controller) {
-        try {
-            getService().setVolumeController(controller);
-        } catch (RemoteException e) {
-            Log.w(TAG, "Error setting volume controller", e);
-        }
+
     }
 
     /**
